@@ -1,13 +1,40 @@
 .weatherCard {
     background-color: rgb(147, 225, 147);
-    width: 239px;
+    width: min(100%, 270px);
     display: flex;
     flex-direction: column;
-    padding: 25px;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 25px 20px;
     border-radius: 30px;
+    text-align: center;
 }
 
-p {
+.weatherCard img {
+    display: block;
+    max-width: 100%;
+}
+
+.humidity,
+.minMax {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.humidity > div,
+.minMax > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.humidity img,
+.minMax img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
 }
