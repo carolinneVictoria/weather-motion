@@ -29,7 +29,7 @@ const WeatherCard = ({ weather }: { weather: Weather}) => {
 
             <div className={styles.humidity}>
                 <div>
-                    <img src="wind-icon.png" alt="Icone de umidade"/>
+                    <img src="/humidity.svg" alt="Icone de umidade"/>
                     <span>Umidade:</span>
                 </div>
                 <span>{weather.humidity}%</span>
@@ -37,7 +37,7 @@ const WeatherCard = ({ weather }: { weather: Weather}) => {
 
             <div className={styles.minMax}>
                 <div>
-                    <img src="wind-icon.png" alt="Icone de temperatura"/>
+                    <img src="/temp.svg" alt="Icone de temperatura"/>
                     <span>Min/Max:</span>
                 </div>
                 <span>{weather.forecast[0].min}°C / {weather.forecast[0].max}°C</span>
