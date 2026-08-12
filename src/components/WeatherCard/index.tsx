@@ -21,7 +21,8 @@ const WeatherCard = ({ weather }: { weather: Weather}) => {
     return (
         <section className={styles.weatherCard}>
 
-            <p>Hoje {weather.date}</p>
+            <p>Hoje</p>
+            <p>{weather.date}</p>
             <img src={`/icons-weather/${weather.condition_slug}.svg`} alt={weather.description}/>
 
             <p>{weather.temp}°C</p>
