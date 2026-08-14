@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import WeatherCard from './components/WeatherCard'
+import SearchBar from './components/SearchBar';
 
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -18,7 +19,10 @@ function App() {
     <div className="app-container">
 
       <>
+      <SearchBar></SearchBar>
+      <section className="card-weather">
         {weather && <WeatherCard weather={weather} />}
+      </section>
       </>
     </div>
   )
