@@ -50,19 +50,19 @@ body {
 }
 
 .weather-background.clear-night {
-  background-image: url('/limpNigth.png');
+  background-image: url('/clear-night.png');
 }
 
 .weather-background.clear-day {
-  background-image: url('/diaLimpo.png');
+  background-image: url('/clear-day.png');
 }
 
 .weather-background.cloudy-night {
-  background-image: url('/cloudyNight.png');
+  background-image: url('/clear-night.png');
 }
 
 .weather-background.cloudy-day {
-  background-image: url('/nublado-dia.png');
+  background-image: url('/clear-day.png');
 }
 
 .weather-background.rain-night {
