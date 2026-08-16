@@ -16,10 +16,10 @@ type Weather = {
   }[];
 };
 
-const WeatherCard = ({ weather }: { weather: Weather}) => {
+const WeatherCard = ({ weather, isNight }: { weather: Weather; isNight?: boolean }) => {
 
     return (
-        <section className={styles.weatherCard}>
+        <section className={`${styles.weatherCard} ${isNight ? styles.night : ''}`}>
             <div className={styles.header}>
                 <div>
                     <p className={styles.label}>Hoje</p>
