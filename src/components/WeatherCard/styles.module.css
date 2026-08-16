@@ -123,3 +123,48 @@
     height: 22px;
     flex-shrink: 0;
 }
+
+/* Modo noturno: fundo mais escuro/opaco e texto claro pra manter contraste
+   sobre imagens de céu escuro. */
+.weatherCard.night {
+    background: rgba(15, 23, 42, 0.45);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: #f1f5f9;
+}
+
+.night .label {
+    color: rgba(241, 245, 249, 0.75);
+}
+
+.night .date {
+    color: #e2e8f0;
+}
+
+.night .city {
+    background: rgba(15, 23, 42, 0.4);
+    color: #e2e8f0;
+}
+
+.night .temperature {
+    color: #f8fafc;
+}
+
+.night .description {
+    color: rgba(241, 245, 249, 0.85);
+}
+
+.night .humidity,
+.night .minMax {
+    background: rgba(15, 23, 42, 0.35);
+    border-color: rgba(255, 255, 255, 0.14);
+}
+
+.night .humidity > div,
+.night .minMax > div {
+    color: #e2e8f0;
+}
+
+.night .humidity > span,
+.night .minMax > span {
+    color: #f8fafc;
+}
