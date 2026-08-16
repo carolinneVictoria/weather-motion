@@ -49,3 +49,17 @@
 .buttonSearch:active {
     transform: scale(0.98);
 }
+
+/* Modo noturno: fundo mais escuro/opaco pra manter contraste do texto claro. */
+.searchBar.night {
+    background: rgba(15, 23, 42, 0.45);
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+.night .inputSearch {
+    color: #f1f5f9;
+}
+
+.night .inputSearch::placeholder {
+    color: rgba(241, 245, 249, 0.65);
+}
