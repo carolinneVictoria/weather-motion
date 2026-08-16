@@ -1,9 +1,9 @@
 import { FaSearch } from "react-icons/fa";
 import styles from './styles.module.css';
 
-const SearchBar = () => {
+const SearchBar = ({ isNight }: { isNight?: boolean }) => {
     return (
-        <div className={styles.searchBar}>
+        <div className={`${styles.searchBar} ${isNight ? styles.night : ''}`}>
             <input
                 type="text"
                 className={styles.inputSearch}
