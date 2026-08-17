@@ -41,6 +41,22 @@ body {
   background-size: cover;
 }
 
+.weather-status {
+  padding: 14px 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  font-weight: 700;
+  color: #1f2a37;
+}
+
+.weather-error {
+  color: #7f1d1d;
+  background: rgba(254, 226, 226, 0.55);
+  border-color: rgba(254, 202, 202, 0.6);
+}
+
 @media (max-width: 768px) {
   .weather-background {
     /* Em telas estreitas o cover corta as laterais; ancora à esquerda
