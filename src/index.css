@@ -78,21 +78,29 @@ body {
 }
 
 .weather-background.cloudy-day {
-  background-image: url('/clear-day.png');
+  background-image: url('/cloudy-day.png');
 }
 
 .weather-background.rain-night {
-  background-image: url('/chuva-noite.png');
+  background-image: url('/rainy-night.png');
 }
 
 .weather-background.rain-day {
-  background-image: url('/chuva-dia.png');
+  background-image: url('/rainy-day.png');
 }
 
-.weather-background.storm {
-  background-image: url('/tempestade.png');
+.weather-background.storm-night {
+  background-image: url('/storm-night.png');
 }
 
-.weather-background.snow {
-  background-image: url('/neve.png');
+.weather-background.storm-day {
+  background-image: url('/storm-day.png');
+}
+
+.weather-background.snow-night {
+  background-image: url('/snow-night.png');
+}
+
+.weather-background.snow-day {
+  background-image: url('/snow-day.png');
 }
