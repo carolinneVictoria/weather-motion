@@ -1,25 +1,8 @@
 import { useEffect, useState } from 'react';
 import WeatherCard from './components/WeatherCard'
 import SearchBar from './components/SearchBar';
-
-const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
-
-type Weather = {
-  date: string;
-  temp: number;
-  description: string;
-  humidity: number;
-  condition_slug: string;
-  currently: string;
-  wind_speedy: string;
-  sunrise: string;
-  sunset: string;
-  city_name: string;
-  forecast: {
-    min: number;
-    max: number;
-  }[];
-};
+import { useWeather } from './hooks/useWeather';
+import type { CityQuery } from './types/weather';
 
 type WeatherTheme =
   | "clear-day"
@@ -31,68 +14,79 @@ type WeatherTheme =
   | "storm"
   | "snow";
 
-function App() {
+  function App() {
+    
+    const DEFAULT_CITY = 'Sao Paulo,SP';
+    const [city, setCity] = useState<CityQuery>(DEFAULT_CITY);
+    const { weather, loading, error } = useWeather(city);
+    const [weatherTheme, setWeatherTheme] = useState<WeatherTheme>("clear-day");
 
-  const weatherURL = `https://api.hgbrasil.com/weather?format=json-cors&key=${API_KEY}&city_name=Sao Paulo,SP`;
-  const [weather, setWeather] = useState<Weather | null>(null)
-  const [weatherTheme, setWeatherTheme] = useState<WeatherTheme>("clear-day");
+    // Na primeira carga, tenta usar a localização do navegador como cidade
+    // padrão. Se o usuário negar ou o navegador não suportar, mantém
+    // DEFAULT_CITY (já é o valor inicial, então não faz nada no erro).
+    
+    useEffect(() => {
+      if (!navigator.geolocation) return;
 
-useEffect(() => {
-  if (!weather) return;
-
-  const slug = weather.condition_slug.toLowerCase();
-  const isNight = weather.currently?.toLowerCase() === "noite";
-  const base = slug.replace(/_day$|_night$/, "");
-
-  if (base === "clear") {
-    setWeatherTheme(isNight ? "clear-night" : "clear-day");
-    return;
-  }
-
-  if (base === "cloud" || base === "cloudly" || base === "fog") {
-    setWeatherTheme(isNight ? "cloudy-night" : "cloudy-day");
-    return;
-  }
-
-  if (base === "rain" || base === "hail") {
-    setWeatherTheme(isNight ? "rain-night" : "rain-day");
-    return;
-  }
-
-  if (base === "storm" || base === "thunderstorm" || base === "risk_thunderstorm") {
-    setWeatherTheme("storm");
-    return;
-  }
-
-  if (base === "snow" || base === "ice") {
-    setWeatherTheme("snow");
-    return;
-  }
-
-  setWeatherTheme(isNight ? "clear-night" : "clear-day");
-}, [weather]);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setCity({ lat: position.coords.latitude, lon: position.coords.longitude });
+        },
+        () => {
+          // permissão negada ou falha: mantém DEFAULT_CITY
+        }
+      );
+    }, []);
 
   useEffect(() => {
-    fetch(weatherURL)
-      .then(res => res.json())
-      .then(data => setWeather(data.results));
-  }, []);
+    if (!weather) return;
 
-  const isNight = weatherTheme.endsWith("-night");
+    const slug = weather.condition_slug.toLowerCase();
+    const isNight = weather.currently?.toLowerCase() === "noite";
+    const base = slug.replace(/_day$|_night$/, "");
 
-  return (
-    <div className={`weather-background ${weatherTheme}`}>
-      <div className="app-container ">
+    if (base === "clear") {
+      setWeatherTheme(isNight ? "clear-night" : "clear-day");
+      return;
+    }
 
-        <>
-        <SearchBar isNight={isNight}></SearchBar>
-        <section className="card-weather">
-          {weather && <WeatherCard weather={weather} isNight={isNight} />}
-        </section>
-        </>
+    if (base === "cloud" || base === "cloudly" || base === "fog") {
+      setWeatherTheme(isNight ? "cloudy-night" : "cloudy-day");
+      return;
+    }
+
+    if (base === "rain" || base === "hail") {
+      setWeatherTheme(isNight ? "rain-night" : "rain-day");
+      return;
+    }
+
+    if (base === "storm" || base === "thunderstorm" || base === "risk_thunderstorm") {
+      setWeatherTheme("storm");
+      return;
+    }
+
+    if (base === "snow" || base === "ice") {
+      setWeatherTheme("snow");
+      return;
+    }
+
+    setWeatherTheme(isNight ? "clear-night" : "clear-day");
+  }, [weather]);
+
+    const isNight = weatherTheme.endsWith("-night");
+
+    return (
+      <div className={`weather-background ${weatherTheme}`}>
+        <div className="app-container">
+          <SearchBar isNight={isNight} onSearch={setCity} />
+          <section className="card-weather">
+            {loading && <p className="weather-status">Carregando...</p>}
+            {!loading && error && <p className="weather-status weather-error">{error}</p>}
+            {!loading && !error && weather && <WeatherCard weather={weather} isNight={isNight} />}
+          </section>
+        </div>
       </div>
-    </div>
-  )
-}
+    );
+  }
 
 export default App
