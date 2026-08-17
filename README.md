@@ -35,8 +35,9 @@ A proposta visual foi criar uma interface ilustrada e dinâmica, fazendo com que
 
 ## 🖼️ Preview
 
->  aqui um GIF ou screenshot da aplicação.
+<img width="1666" height="925" alt="Captura de Tela 2026-08-17 às 11 41 16" src="https://github.com/user-attachments/assets/710d6c50-bd06-4c98-bb81-3b7fd2fe33ab" />
 
+<img width="1666" height="925" alt="Captura de Tela 2026-08-17 às 11 44 27" src="https://github.com/user-attachments/assets/c9aef55e-85ab-4046-bfe3-3eddd56e1b05" />
 
 ## 🌦️ Funcionalidades
 
