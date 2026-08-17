@@ -18,6 +18,8 @@ Além de exibir as condições climáticas atuais de uma cidade, a aplicação a
 
 Ao acessar a aplicação, o Weather Motion também pode utilizar a localização do dispositivo para mostrar automaticamente o clima da região do usuário.
 
+Veja o projeto: https://weather-motion-nu.vercel.app/
+
 ## 🎨 Ilustrações
 
 Todas as ilustrações e cenários utilizados no **Weather Motion** foram criados por mim especialmente para o projeto.
