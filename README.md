@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <strong>React • TypeScript • Vite • HG Brasil Weather API</strong>
+  <strong>React • TypeScript • Vite • Open-Meteo</strong>
 </p>
 
 ---
@@ -73,7 +73,7 @@ Cada condição pode possuir variações visuais específicas para **dia e noite
 | Vite                  | Ambiente de desenvolvimento e build          |
 | CSS Modules           | Estilização isolada dos componentes          |
 | React Icons           | Ícones da interface                          |
-| HG Brasil Weather API | Dados meteorológicos                         |
+| Open-Meteo            | Dados meteorológicos e geocodificação        |
 | Geolocation API       | Localização do usuário                       |
 | ESLint                | Padronização e qualidade do código           |
 
@@ -85,7 +85,8 @@ Antes de começar, você precisa ter instalado:
 
 * **Node.js 18+**
 * **npm**
-* Uma chave da **HG Brasil Weather API**
+
+Nenhuma chave de API é necessária — a Open-Meteo é gratuita e não exige cadastro.
 
 ### 1. Clone o repositório
 
@@ -105,19 +106,7 @@ cd weather-motion
 npm install
 ```
 
-### 3. Configure as variáveis de ambiente
-
-Crie um arquivo `.env.local` na raiz do projeto:
-
-```env
-VITE_WEATHER_API_KEY=SUA_CHAVE_AQUI
-```
-
-> ⚠️ Não compartilhe sua chave da API nem envie o arquivo `.env.local` para o GitHub.
-
-Certifique-se de que ele esteja incluído no `.gitignore`.
-
-### 4. Execute o projeto
+### 3. Execute o projeto
 
 ```bash
 npm run dev
@@ -151,18 +140,13 @@ Isso permite que o background acompanhe visualmente as condições meteorológic
 
 ## 🌐 API
 
-Os dados meteorológicos são fornecidos pela [HG Brasil Weather API](https://console.hgbrasil.com/documentation/weather).
+Os dados meteorológicos são fornecidos pela [Open-Meteo](https://open-meteo.com/), gratuita e sem necessidade de chave de API:
 
-A aplicação utiliza os dados retornados pela API para obter informações como:
+* **[Forecast API](https://open-meteo.com/en/docs)** — temperatura atual, umidade, código de condição climática (WMO) e mín/máx do dia.
+* **[Geocoding API](https://open-meteo.com/en/docs/geocoding-api)** — resolve o nome da cidade pesquisada em coordenadas.
+* **[BigDataCloud Reverse Geocoding](https://www.bigdatacloud.com/geocoding-apis/free-reverse-geocoding-to-city-api)** — resolve as coordenadas da geolocalização do navegador de volta num nome de cidade (best-effort; se falhar, exibe "Sua localização").
 
-* Cidade
-* Temperatura atual
-* Condição climática
-* Descrição do clima
-* Horário
-* Indicador de dia/noite
-
-Essas informações também são utilizadas para determinar qual cenário deve ser exibido.
+O código WMO retornado pela Forecast API é mapeado para ícone/descrição/tema visual em [`src/utils/weatherCode.ts`](src/utils/weatherCode.ts).
 
 ## 👩‍💻 Autora
 
