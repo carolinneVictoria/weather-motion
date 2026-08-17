@@ -1,20 +1,5 @@
+import type { Weather } from '../../types/weather';
 import styles from './styles.module.css';
-
-type Weather = {
-  date: string;
-  temp: number;
-  description: string;
-  humidity: number;
-  condition_slug: string;
-  wind_speedy: string;
-  sunrise: string;
-  sunset: string;
-  city_name: string;
-  forecast: {
-    min: number;
-    max: number;
-  }[];
-};
 
 const WeatherCard = ({ weather, isNight }: { weather: Weather; isNight?: boolean }) => {
 
