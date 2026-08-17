@@ -1,75 +1,180 @@
-# React + TypeScript + Vite
+# 🌤️ Weather Motion
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p align="center">
+  Uma experiência de previsão do tempo dinâmica, onde a interface se transforma de acordo com o clima e o período do dia.
+</p>
 
-Currently, two official plugins are available:
+<p align="center">
+  <strong>React • TypeScript • Vite • HG Brasil Weather API</strong>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Sobre o projeto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+O **Weather Motion** é uma aplicação de previsão do tempo desenvolvida com **React + TypeScript**.
 
-## Expanding the ESLint configuration
+Além de exibir as condições climáticas atuais de uma cidade, a aplicação adapta sua identidade visual automaticamente de acordo com o **clima** e o **período do dia**, criando diferentes atmosferas para dias ensolarados, noites limpas, chuva, tempestades, neve e tempo nublado.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Ao acessar a aplicação, o Weather Motion também pode utilizar a localização do dispositivo para mostrar automaticamente o clima da região do usuário.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🎨 Ilustrações
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Todas as ilustrações e cenários utilizados no **Weather Motion** foram criados por mim especialmente para o projeto.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Os cenários possuem diferentes variações de acordo com a condição climática e o período do dia, incluindo:
 
+- ☀️ Céu limpo
+- ☁️ Nublado
+- 🌧️ Chuva
+- ⛈️ Tempestade
+- ❄️ Neve
+- 🌙 Variações noturnas
+
+A proposta visual foi criar uma interface ilustrada e dinâmica, fazendo com que o cenário acompanhe as condições climáticas exibidas pela aplicação.
+
+## 🖼️ Preview
+
+>  aqui um GIF ou screenshot da aplicação.
+
+
+## 🌦️ Funcionalidades
+
+* 📍 **Localização automática** utilizando a Geolocation API do navegador
+* 🔎 **Busca por cidade** através da barra de pesquisa
+* ⌨️ Pesquisa utilizando **Enter** ou o botão de busca
+* 🌡️ Exibição das principais informações climáticas da cidade
+* 🌅 Identificação automática entre **dia e noite**
+* 🎨 Interface dinâmica e responsiva de acordo com as condições climáticas
+* ⏳ Estado de carregamento durante as requisições
+* ⚠️ Tratamento de erros para cidades não encontradas ou falhas na API
+* 🏙️ Cidade padrão como fallback caso a localização não esteja disponível
+
+### Temas climáticos
+
+A aplicação possui diferentes cenários visuais para:
+
+* ☀️ Céu limpo durante o dia
+* 🌙 Céu limpo durante a noite
+* ☁️ Tempo nublado
+* 🌧️ Chuva
+* ⛈️ Tempestade
+* ❄️ Neve
+
+Cada condição pode possuir variações visuais específicas para **dia e noite**.
+
+## 🛠️ Tecnologias
+
+| Tecnologia            | Utilização                                   |
+| --------------------- | -------------------------------------------- |
+| React 19              | Construção da interface                      |
+| TypeScript            | Tipagem e maior segurança no desenvolvimento |
+| Vite                  | Ambiente de desenvolvimento e build          |
+| CSS Modules           | Estilização isolada dos componentes          |
+| React Icons           | Ícones da interface                          |
+| HG Brasil Weather API | Dados meteorológicos                         |
+| Geolocation API       | Localização do usuário                       |
+| ESLint                | Padronização e qualidade do código           |
+
+## 🚀 Como executar
+
+### Pré-requisitos
+
+Antes de começar, você precisa ter instalado:
+
+* **Node.js 18+**
+* **npm**
+* Uma chave da **HG Brasil Weather API**
+
+### 1. Clone o repositório
+
+```bash
+git clone SEU_LINK_DO_REPOSITORIO
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Entre na pasta:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+cd weather-motion
 ```
+
+### 2. Instale as dependências
+
+```bash
+npm install
+```
+
+### 3. Configure as variáveis de ambiente
+
+Crie um arquivo `.env.local` na raiz do projeto:
+
+```env
+VITE_WEATHER_API_KEY=SUA_CHAVE_AQUI
+```
+
+> ⚠️ Não compartilhe sua chave da API nem envie o arquivo `.env.local` para o GitHub.
+
+Certifique-se de que ele esteja incluído no `.gitignore`.
+
+### 4. Execute o projeto
+
+```bash
+npm run dev
+```
+
+Depois, acesse o endereço exibido pelo Vite no terminal.
+
+Normalmente:
+
+```text
+http://localhost:5173
+```
+
+## 🎨 Sistema de temas
+
+O Weather Motion interpreta a condição retornada pela API e define um tema visual correspondente.
+
+Exemplos:
+
+```text
+clear_day     → ☀️ Céu limpo durante o dia
+clear_night   → 🌙 Céu limpo durante a noite
+cloud         → ☁️ Nublado
+rain          → 🌧️ Chuva
+storm         → ⛈️ Tempestade
+snow          → ❄️ Neve
+```
+
+Isso permite que o background acompanhe visualmente as condições meteorológicas da cidade pesquisada.
+
+
+## 🌐 API
+
+Os dados meteorológicos são fornecidos pela [HG Brasil Weather API](https://console.hgbrasil.com/documentation/weather).
+
+A aplicação utiliza os dados retornados pela API para obter informações como:
+
+* Cidade
+* Temperatura atual
+* Condição climática
+* Descrição do clima
+* Horário
+* Indicador de dia/noite
+
+Essas informações também são utilizadas para determinar qual cenário deve ser exibido.
+
+## 👩‍💻 Autora
+
+Desenvolvido por **Carol**.
+
+Projeto criado para praticar desenvolvimento frontend com **React, TypeScript, consumo de APIs, geolocalização e interfaces dinâmicas**.
+
+---
+
+<p align="center">
+  ☀️ 🌧️ ☁️ 🌙
+</p>
+
+<p align="center">
+  <strong>Weather Motion</strong> — o clima muda, a interface também.
+</p>
