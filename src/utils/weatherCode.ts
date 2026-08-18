@@ -6,9 +6,6 @@ type WeatherCodeInfo = {
   theme: WeatherTheme;
 };
 
-// Mapeia o "weather_code" (código WMO) + is_day da Open-Meteo pro slug de
-// ícone (public/icons-weather), descrição em pt-BR e tema visual do fundo.
-// Referência dos códigos: https://open-meteo.com/en/docs (WMO Weather codes)
 export function mapWeatherCode(code: number, isDay: boolean): WeatherCodeInfo {
   const dayNight = isDay ? 'day' : 'night';
 
