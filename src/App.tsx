@@ -21,9 +21,12 @@ function App() {
       (position) => {
         setCity({ lat: position.coords.latitude, lon: position.coords.longitude });
       },
-      () => {
+      (err) => {
         // permissão negada ou falha: mantém DEFAULT_CITY
-      }
+        // err.code: 1 = PERMISSION_DENIED, 2 = POSITION_UNAVAILABLE, 3 = TIMEOUT
+        console.warn(`[geolocation] falhou (code=${err.code}): ${err.message}`);
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
   }, []);
 
