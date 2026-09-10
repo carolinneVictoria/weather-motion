@@ -9,8 +9,10 @@ export type WeatherTheme =
   | "cloudy-night"
   | "rain-day"
   | "rain-night"
-  | "storm"
-  | "snow";
+  | "storm-day"
+  | "storm-night"
+  | "snow-day"
+  | "snow-night";
 
 export type Weather = {
   date: string;
