@@ -34,15 +34,15 @@ export function mapWeatherCode(code: number, isDay: boolean): WeatherCodeInfo {
   }
 
   if ([71, 73, 75, 77, 85, 86].includes(code)) {
-    return { conditionSlug: 'snow', description: 'Neve', theme: 'snow' };
+    return { conditionSlug: 'snow', description: 'Neve', theme: `snow-${dayNight}` };
   }
 
   if (code === 95) {
-    return { conditionSlug: 'storm', description: 'Tempestade', theme: 'storm' };
+    return { conditionSlug: 'storm', description: 'Tempestade', theme: `storm-${dayNight}` };
   }
 
   if (code === 96 || code === 99) {
-    return { conditionSlug: 'hail', description: 'Tempestade com granizo', theme: 'storm' };
+    return { conditionSlug: 'hail', description: 'Tempestade com granizo', theme: `storm-${dayNight}` };
   }
 
   return { conditionSlug: `none_${dayNight}`, description: 'Condição desconhecida', theme: `clear-${dayNight}` };
