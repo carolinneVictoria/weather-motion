@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import WeatherCard from './components/WeatherCard'
 import SearchBar from './components/SearchBar';
+import NextDays from './components/NextDays';
 import { useWeather } from './hooks/useWeather';
 import type { CityQuery } from './types/weather';
 
@@ -37,11 +38,19 @@ function App() {
     <div className={`weather-background ${weatherTheme}`}>
       <div className="app-container">
         <SearchBar isNight={isNight} onSearch={setCity} />
-        <section className="card-weather">
-          {loading && <p className={`weather-status ${isNight ? 'night' : ''}`}>Carregando...</p>}
-          {!loading && error && <p className={`weather-status weather-error ${isNight ? 'night' : ''}`}>{error}</p>}
-          {!loading && !error && weather && <WeatherCard weather={weather} isNight={isNight} />}
-        </section>
+        <div className={`content-row ${isNight ? 'night' : ''}`}>
+          <section className="card-weather">
+            {loading && <p className={`weather-status ${isNight ? 'night' : ''}`}>Carregando...</p>}
+            {!loading && error && <p className={`weather-status weather-error ${isNight ? 'night' : ''}`}>{error}</p>}
+            {!loading && !error && weather && <WeatherCard weather={weather} isNight={isNight} />}
+          </section>
+          {!loading && !error && weather && (
+            <>
+              <div className="panel-divider" />
+              <NextDays days={weather.daily} isNight={isNight} />
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
