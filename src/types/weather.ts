@@ -26,4 +26,11 @@ export type Weather = {
     min: number;
     max: number;
   }[];
+  daily: {
+    date: string;
+    min: number;
+    max: number;
+    condition_slug: string;
+    description: string;
+  }[];
 };
