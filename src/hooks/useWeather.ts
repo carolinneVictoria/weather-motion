@@ -65,7 +65,7 @@ export function useWeather(query: CityQuery): UseWeatherResult {
     (async () => {
       const { latitude, longitude, cityName } = await resolveCoordinates(query, controller.signal);
 
-      const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,weather_code,is_day&daily=temperature_2m_max,temperature_2m_min&timezone=auto`;
+      const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,weather_code,is_day&daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=6&timezone=auto`;
       const res = await fetch(forecastUrl, { signal: controller.signal });
       if (!res.ok) throw new Error('Não foi possível obter o clima. Tente novamente.');
 
@@ -86,6 +86,22 @@ export function useWeather(query: CityQuery): UseWeatherResult {
             max: Math.round(data.daily.temperature_2m_max[0]),
           },
         ],
+        // Próximos dias: pula o índice 0 (hoje, já mostrado no card principal).
+        // Ícone/descrição usam isDay=true, já que a previsão diária não distingue dia/noite.
+        daily: data.daily.time.slice(1).map((date: string, idx: number) => {
+          const i = idx + 1;
+          const { conditionSlug, description } = mapWeatherCode(data.daily.weather_code[i], true);
+
+          return {
+            date: new Date(`${date}T00:00:00`)
+              .toLocaleDateString('pt-BR', { weekday: 'short' })
+              .replace('.', ''),
+            min: Math.round(data.daily.temperature_2m_min[i]),
+            max: Math.round(data.daily.temperature_2m_max[i]),
+            condition_slug: conditionSlug,
+            description,
+          };
+        }),
       });
     })()
       .catch((err) => {
