@@ -1,15 +1,8 @@
 .weatherCard {
-    width: min(100%, 360px);
+    width: min(100%, 320px);
     display: flex;
     flex-direction: column;
     gap: 22px;
-    padding: 24px 22px 20px;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0 24px 50px rgba(58, 77, 112, 0.18);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
     color: #1f2a37;
 }
 
@@ -127,8 +120,6 @@
 /* Modo noturno: fundo mais escuro/opaco e texto claro pra manter contraste
    sobre imagens de céu escuro. */
 .weatherCard.night {
-    background: rgba(15, 23, 42, 0.45);
-    border-color: rgba(255, 255, 255, 0.18);
     color: #f1f5f9;
 }
 
