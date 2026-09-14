@@ -20,7 +20,7 @@ describe("mapWeatherCode", () => {
         });
     })
 
-    it("retorna o tema de céu nublado durante o dia", () => {
+    it("retorna o tema de céu parcialmente nublado durante o dia", () => {
         const result = mapWeatherCode(1, true);
         expect(result).toEqual({
             conditionSlug: "cloudly_day",
@@ -29,7 +29,7 @@ describe("mapWeatherCode", () => {
         });
     })
 
-    it("retorna o tema de céu nublado durante a noite", () => {
+    it("retorna o tema de céu parcialmente nublado durante a noite", () => {
         const result = mapWeatherCode(1, false);
         expect(result).toEqual({
             conditionSlug: "cloudly_night",
@@ -37,4 +37,23 @@ describe("mapWeatherCode", () => {
             theme: "cloudy-night",
         });
     })
+
+    it("retorna o tema de céu nublado durante o dia", () => {
+        const result = mapWeatherCode(3, true);
+        expect(result).toEqual({
+            conditionSlug: "cloud",
+            description: "Nublado",
+            theme: "cloudy-day",
+        });
+    });
+
+    it("retorna o tema de céu nublado durante a noite", () => {
+        const result = mapWeatherCode(3, false);
+        expect(result).toEqual({
+            conditionSlug: "cloud",
+            description: "Nublado",
+            theme: "cloudy-night",
+        });
+    });
+
 });
